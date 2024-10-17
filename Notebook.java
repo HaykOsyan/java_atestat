@@ -46,8 +46,8 @@ public class Notebook {
 
     public static void main(String[] args) {
         NotebookController controller = new NotebookController();
-        controller.addNotebook(1, "Dell", "XPS", "16GB", "512GB", "13.3\"");
-        controller.addNotebook(2, "HP", "Spectre", "16GB", "1TB", "15.6\"");
+        controller.addNotebook(1, "Dell", "XPS", "16", "512", "13.3\"");
+        controller.addNotebook(2, "HP", "Spectre", "32", "1024", "15.6\"");
 
         Notebook foundNotebook = controller.getBy("name", "XPS");
         if (foundNotebook != null) {
@@ -62,6 +62,6 @@ public class Notebook {
         } else {
             System.out.println("Notebook not found.");
         }
-
+        controller.filterByRam(32, 0);
     }
 }

@@ -57,4 +57,26 @@ public class NotebookController {
         return null;
     }
 
+    public void printAllNotebooks() {
+        if (notebooks.isEmpty()) {
+            System.out.println("No notebooks available.");
+        } else {
+            for (Notebook notebook : notebooks.values()) {
+                System.out.println(notebook);
+            }
+        }
+    }
+
+    public void filterByRam(int ramMin, int ramMax) {
+        // no filter from 10 to 0 ...
+        if (ramMin > ramMax) {
+            ramMax = ramMin;
+        }
+        for (Notebook notebook : notebooks.values()) {
+            if (Integer.valueOf(notebook.ram) > ramMin && Integer.valueOf(notebook.ram) < ramMax) {
+                System.out.println(notebook);
+            }
+        }
+    }
+
 }
