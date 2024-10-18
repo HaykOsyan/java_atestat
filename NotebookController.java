@@ -67,15 +67,50 @@ public class NotebookController {
         }
     }
 
-    public void filterByRam(int ramMin, int ramMax) {
-        // no filter from 10 to 0 ...
-        if (ramMin > ramMax) {
-            ramMax = ramMin;
+    // public void filterByRam(int ramMin, int ramMax) {
+    // // no filter from 10 to 0 ...
+    // if (ramMin > ramMax) {
+    // ramMax = ramMin;
+    // }
+    // for (Notebook notebook : notebooks.values()) {
+    // if (Integer.valueOf(notebook.ram) > ramMin && Integer.valueOf(notebook.ram) <
+    // ramMax) {
+    // System.out.println(notebook);
+    // }
+    // }
+    // }
+
+    // attribute can be ram, hdd, screenSize ..... in future price, year..., integer
+    // values
+    public void filterBy(String attribute, int min, int max) {
+        // no filter from max to min ...
+        if (min >= max) {
+            int temp = max;
+            max = min;
+            min = temp;
         }
         for (Notebook notebook : notebooks.values()) {
-            if (Integer.valueOf(notebook.ram) > ramMin && Integer.valueOf(notebook.ram) < ramMax) {
-                System.out.println(notebook);
+            switch (attribute) {
+                case "ram":
+                    if (Integer.valueOf(notebook.ram) > min && Integer.valueOf(notebook.ram) < max) {
+                        System.out.println(notebook);
+                    }
+                    break;
+                case "hdd":
+                    if (Integer.valueOf(notebook.hdd) > min && Integer.valueOf(notebook.hdd) < max) {
+                        System.out.println(notebook);
+                    }
+                    break;
+                case "screenSize":
+                    if (Double.valueOf(notebook.screenSize) > min && Double.valueOf(notebook.screenSize) < max) {
+                        System.out.println(notebook);
+                    }
+                    break;
+                default:
+                System.out.println("Please check entered data");
+                return;
             }
+
         }
     }
 

@@ -28,8 +28,9 @@ public class Notebook {
 
     @Override
     public String toString() {
-        return "Notebook{id=" + id + ", model='" + model + "', name='" + name + "', ram='" + ram + "', hdd='" + hdd
-                + "', screenSize='" + screenSize + "'}";
+        return "Notebook{id=" + id + ", model='" + model + "', name='" + name + "', ram='" + ram + "gb" + "', hdd='"
+                + hdd
+                + "gb" + "', screenSize='" + screenSize + "`" + "'}";
     }
 
     // public Notebook getByName(String name) {
@@ -46,8 +47,8 @@ public class Notebook {
 
     public static void main(String[] args) {
         NotebookController controller = new NotebookController();
-        controller.addNotebook(1, "Dell", "XPS", "16", "512", "13.3\"");
-        controller.addNotebook(2, "HP", "Spectre", "32", "1024", "15.6\"");
+        controller.addNotebook(1, "Dell", "XPS", "16", "512", "13.3");
+        controller.addNotebook(2, "HP", "Spectre", "32", "1024", "15.6");
 
         Notebook foundNotebook = controller.getBy("name", "XPS");
         if (foundNotebook != null) {
@@ -56,12 +57,13 @@ public class Notebook {
             System.out.println("Notebook not found.");
         }
 
-        Notebook hddNotebook = controller.getBy("hdd", "1TB");
+        Notebook hddNotebook = controller.getBy("hdd", "1024");
         if (hddNotebook != null) {
             System.out.println(hddNotebook);
         } else {
             System.out.println("Notebook not found.");
         }
-        controller.filterByRam(32, 0);
+        controller.filterBy("ram", 50, 30);
+        controller.filterBy("screenSize", 16, 14);
     }
 }
